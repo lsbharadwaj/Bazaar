@@ -40,7 +40,3 @@ REST_REGISTRATION.update(
 
 
 CORS_ORIGIN_ALLOW_ALL=True
-
-
-TEMPLATES[0]['DIRS'].append(os.path.join(BASE_DIR,'../Project-J-ReactUI/build'))
-
