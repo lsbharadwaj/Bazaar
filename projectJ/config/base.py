@@ -190,3 +190,6 @@ EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
 CORS_ORIGIN_WHITELIST = [
     
 ]
+
+import django_heroku
+TEST_RUNNER = 'django_heroku.HerokuDiscoverRunner'

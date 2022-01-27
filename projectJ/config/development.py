@@ -24,9 +24,21 @@ INSTALLED_APPS += [
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+
+        'NAME': 'd4auiq0joiqpjg',
+
+        'USER': 'lerdetczvpsyfb',
+
+        'PASSWORD': '262938b2380aed9f4c686ad6dcaa0558fbba0362f6dba6360bc995ebbb4aa658',
+
+        'HOST': 'ec2-54-224-64-114.compute-1.amazonaws.com',
+
+        'PORT': '5432',
+
     }
+
 }
 
 REST_REGISTRATION.update(
