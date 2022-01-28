@@ -43,9 +43,9 @@ DATABASES = {
 
 REST_REGISTRATION.update(
     {
-        'RESET_PASSWORD_VERIFICATION_URL':'https://localhost:3000/reset-password/',
-        'REGISTER_VERIFICATION_URL':'https://localhost:3000/verify-registration/',
-        'REGISTER_EMAIL_VERIFICATION_URL':'https://localhost:3000/register-new-email/',
+        'RESET_PASSWORD_VERIFICATION_URL':os.environ['FRONTEND_URL']+'/reset-password/',
+        'REGISTER_VERIFICATION_URL':os.environ['FRONTEND_URL']+'/verify-registration/',
+        'REGISTER_EMAIL_VERIFICATION_URL':os.environ['FRONTEND_URL']+'/register-new-email/',
         'VERIFICATION_FROM_EMAIL':'lsbharadwaj@gmail.com'
     }
 )
