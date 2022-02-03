@@ -43,7 +43,7 @@ DATABASES = {
 
 REST_REGISTRATION.update(
     {
-        'RESET_PASSWORD_VERIFICATION_URL':os.environ['FRONTEND_URL']+'/reset-password/',
+        'RESET_PASSWORD_VERIFICATION_URL':os.environ['FRONTEND_URL']+'/reset-password-confirm/',
         'REGISTER_VERIFICATION_URL':os.environ['FRONTEND_URL']+'/verify-registration/',
         'REGISTER_EMAIL_VERIFICATION_URL':os.environ['FRONTEND_URL']+'/register-new-email/',
         'VERIFICATION_FROM_EMAIL':'lsbharadwaj@gmail.com'
