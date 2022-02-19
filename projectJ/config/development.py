@@ -16,7 +16,6 @@ INSTALLED_APPS += [
     # Apps to use the installed packages
     "sslserver",
     'debug_toolbar',
-    'store',
 ]
 
 

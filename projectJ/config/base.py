@@ -52,6 +52,8 @@ INSTALLED_APPS = [
     'drf_social_oauth2',
     'rest_registration',
     'corsheaders',
+    # Apps
+    'store',
 
 ]
 
