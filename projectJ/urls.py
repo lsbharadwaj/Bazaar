@@ -25,11 +25,15 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('api/',include('tutorial.urls')),
+    # path('api/',include('tutorial.urls')),
+    path('api/store/',include('store.urls')),
     path('admin/', admin.site.urls),
     path('api/social_auth/',include('social_django.urls')),
     path('__debug__/', include('debug_toolbar.urls')), # needed by debug toolbar
     path('api/social_auth/', include('drf_social_oauth2.urls', namespace='drf')),
     path('api/local_auth/', include('rest_registration.api.urls')),
-    re_path('/*',TemplateView.as_view(template_name='index.html')),
+    # re_path('/*',TemplateView.as_view(template_name='index.html')),
 ] 
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

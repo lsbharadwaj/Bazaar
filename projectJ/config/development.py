@@ -16,6 +16,7 @@ INSTALLED_APPS += [
     # Apps to use the installed packages
     "sslserver",
     'debug_toolbar',
+    'store',
 ]
 
 
@@ -25,17 +26,10 @@ INSTALLED_APPS += [
 DATABASES = {
     'default': {
 
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.sqlite3',
 
-        'NAME': 'd4auiq0joiqpjg',
+        'NAME': os.path.join(BASE_DIR,'../storedb.db'),
 
-        'USER': 'lerdetczvpsyfb',
-
-        'PASSWORD': '262938b2380aed9f4c686ad6dcaa0558fbba0362f6dba6360bc995ebbb4aa658',
-
-        'HOST': 'ec2-54-224-64-114.compute-1.amazonaws.com',
-
-        'PORT': '5432',
 
     }
 
@@ -52,3 +46,6 @@ REST_REGISTRATION.update(
 
 
 CORS_ORIGIN_ALLOW_ALL=True
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
