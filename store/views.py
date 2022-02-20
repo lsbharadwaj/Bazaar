@@ -37,13 +37,6 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = ProductSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     
-    def get_queryset(self):
-        if self.action == 'list':
-            return Product.objects.filter(publish=True).all()
-        else:
-            store = Store.objects.get(user=self.request.user)
-            return Product.objects.filter(publish=True)|Product.objects.filter(store=store)
-        
     
 
 class ManageProductViewSet(viewsets.ModelViewSet):
