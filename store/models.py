@@ -26,6 +26,7 @@ class Store(models.Model):
 class Product(models.Model):
     store = models.ForeignKey(Store,related_name='products', on_delete=models.CASCADE)
     title = models.CharField( max_length=80, help_text='A short title')
+    available_quantity = models.PositiveIntegerField(default = 0,help_text="Available Quantity")
     description = models.CharField(max_length=700, blank=True, help_text='Detail about your product')
     price = models.DecimalField(max_digits=8, decimal_places=2, default=0, help_text='Selling price including shipping')
     created = models.DateField(auto_now_add=True, editable=False, help_text='Product added on')

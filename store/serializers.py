@@ -21,7 +21,7 @@ class StoreWithContactSerializer(serializers.HyperlinkedModelSerializer):
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Product
-        fields = ['title', 'description','price','url','product_img','store','id']
+        fields = ['title', 'description','price','url','product_img','store','id','available_quantity']
         # extra_kwargs = {'shop_url':{'lookup_field':'store'}}
 
 
@@ -29,5 +29,5 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
 class ManageProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Product
-        fields = ['title', 'description','price','url','publish','product_img','id']
+        fields = ['title', 'description','price','url','publish','product_img','id','store','available_quantity']
         extra_kwargs={'url':{'view_name':'manage_product-detail'}}

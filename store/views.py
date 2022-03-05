@@ -1,11 +1,13 @@
+from multiprocessing import context
 from rest_framework import viewsets
 from .models import Product, Store
 from .serializers import ManageProductSerializer, ProductSerializer, StoreSerializer, StoreWithContactSerializer
 from rest_framework import permissions
 from rest_framework import exceptions
+from rest_framework.response import Response
 from .permissions import IsOwnerOrReadOnly,IsProductOwner,IsProductOwnerOrReadOnly
 from rest_framework.decorators import action
-
+from rest_framework import status
 # Create your views here.
 class StoreViewSet(viewsets.ModelViewSet):
     """
@@ -26,6 +28,16 @@ class StoreViewSet(viewsets.ModelViewSet):
             return StoreWithContactSerializer
         else:
             return StoreSerializer
+    
+    @action(detail=False,methods=['get'])
+    def my_shop(self, request):
+        if self.request.user.is_authenticated:
+            store = Store.objects.get(user=self.request.user)
+            serializer = StoreWithContactSerializer(store,context={'request':request})
+            return Response(serializer.data)
+        else:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
 
 
 
