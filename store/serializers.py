@@ -29,5 +29,5 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
 class ManageProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Product
-        fields = ['title', 'description','price','url','publish','product_img','id','store','available_quantity']
+        fields = ['title', 'description','price','url','publish','product_img','id','available_quantity']
         extra_kwargs={'url':{'view_name':'manage_product-detail'}}

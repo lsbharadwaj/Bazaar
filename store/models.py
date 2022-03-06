@@ -34,8 +34,8 @@ class Store(models.Model):
     def compressImage(self,uploadedImage):
         imageTemproary = Image.open(uploadedImage)
         outputIoStream = BytesIO()
-        # imageTemproaryResized = imageTemproary.resize( (1020,573) ) 
-        imageTemproary.save(outputIoStream , format='JPEG', quality=20)
+        imageTemproaryResized = imageTemproary.thumbnail( (1000,1000) ,Image.ANTIALIAS) 
+        imageTemproary.save(outputIoStream , format='JPEG', quality=70)
         outputIoStream.seek(0)
         uploadedImage = InMemoryUploadedFile(outputIoStream,'ImageField', "%s.jpg" % uploadedImage.name.split('.')[0], 'image/jpeg', sys.getsizeof(outputIoStream), None)
         return uploadedImage
@@ -63,8 +63,8 @@ class Product(models.Model):
     def compressImage(self,uploadedImage):
         imageTemproary = Image.open(uploadedImage)
         outputIoStream = BytesIO()
-        # imageTemproaryResized = imageTemproary.resize( (1020,573) ) 
-        imageTemproary.save(outputIoStream , format='JPEG', quality=20)
+        imageTemproaryResized = imageTemproary.thumbnail( (1000,1000) ,Image.ANTIALIAS) 
+        imageTemproary.save(outputIoStream , format='JPEG', quality=70)
         outputIoStream.seek(0)
         uploadedImage = InMemoryUploadedFile(outputIoStream,'ImageField', "%s.jpg" % uploadedImage.name.split('.')[0], 'image/jpeg', sys.getsizeof(outputIoStream), None)
         return uploadedImage
