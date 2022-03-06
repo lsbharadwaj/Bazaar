@@ -32,7 +32,7 @@ urlpatterns = [
     path('__debug__/', include('debug_toolbar.urls')), # needed by debug toolbar
     path('api/social_auth/', include('drf_social_oauth2.urls', namespace='drf')),
     path('api/local_auth/', include('rest_registration.api.urls')),
-    # re_path('/*',TemplateView.as_view(template_name='index.html')),
+    re_path('/*',TemplateView.as_view(template_name='index.html')),
 ] 
 
 if settings.DEBUG:

@@ -28,7 +28,8 @@ class Store(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
-        self.shop_img = self.compressImage(self.shop_img)
+        if self.shop_img:
+            self.shop_img = self.compressImage(self.shop_img)
         super().save(*args, **kwargs)
 
     def compressImage(self,uploadedImage):
@@ -57,7 +58,8 @@ class Product(models.Model):
         return self.title
 
     def save(self, *args, **kwargs):
-        self.product_img = self.compressImage(self.product_img)
+        if self.product_img:
+            self.product_img = self.compressImage(self.product_img)
         super().save(*args, **kwargs)
 
     def compressImage(self,uploadedImage):
