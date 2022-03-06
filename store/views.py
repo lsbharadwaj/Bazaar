@@ -29,16 +29,14 @@ class StoreViewSet(viewsets.ModelViewSet):
         else:
             return StoreSerializer
     
-    @action(detail=False,methods=['get'])
+    @action(detail=False,methods=['get'],permission_classes=[permissions.IsAuthenticated])
     def my_shop(self, request):
-        if self.request.user.is_authenticated:
+        try:
             store = Store.objects.get(user=self.request.user)
             serializer = StoreWithContactSerializer(store,context={'request':request})
             return Response(serializer.data)
-        else:
+        except:
             return Response(status=status.HTTP_404_NOT_FOUND)
-
-
 
 
 class ProductViewSet(viewsets.ReadOnlyModelViewSet):
