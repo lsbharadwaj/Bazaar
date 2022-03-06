@@ -6,7 +6,7 @@ from .models import Product, Store
 @receiver(post_delete, sender=Store)
 def deleteStorePhotoOnDelete(sender, instance, using, **kwargs):
     try:
-        instance.store_img.delete(save=False)
+        instance.shop_img.delete(save=False)
     except:
         pass
 
@@ -42,9 +42,9 @@ def pre_save_image(sender, instance, *args, **kwargs):
 def pre_save_image(sender, instance, *args, **kwargs):
     """ instance old image file will delete from os """
     try:
-        old_img = instance.__class__.objects.get(id=instance.id).store_img.path
+        old_img = instance.__class__.objects.get(id=instance.id).shop_img.path
         try:
-            new_img = instance.store_img.path
+            new_img = instance.shop_img.path
         except:
             new_img = None
         if new_img != old_img:

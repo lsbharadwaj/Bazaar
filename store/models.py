@@ -3,6 +3,11 @@ import uuid
 from django.db import models
 from django.conf import settings
 from phonenumber_field.modelfields import PhoneNumberField
+from PIL import Image
+from io import BytesIO
+from django.core.files.uploadedfile import InMemoryUploadedFile
+import sys
+
 # Create your models here.
 
 def get_unique_filepath(instance,filename):
@@ -22,6 +27,19 @@ class Store(models.Model):
     def __str__(self) -> str:
         return self.name
 
+    def save(self, *args, **kwargs):
+        self.shop_img = self.compressImage(self.shop_img)
+        super().save(*args, **kwargs)
+
+    def compressImage(self,uploadedImage):
+        imageTemproary = Image.open(uploadedImage)
+        outputIoStream = BytesIO()
+        # imageTemproaryResized = imageTemproary.resize( (1020,573) ) 
+        imageTemproary.save(outputIoStream , format='JPEG', quality=20)
+        outputIoStream.seek(0)
+        uploadedImage = InMemoryUploadedFile(outputIoStream,'ImageField', "%s.jpg" % uploadedImage.name.split('.')[0], 'image/jpeg', sys.getsizeof(outputIoStream), None)
+        return uploadedImage
+
 
 class Product(models.Model):
     store = models.ForeignKey(Store,related_name='products', on_delete=models.CASCADE)
@@ -37,3 +55,16 @@ class Product(models.Model):
 
     def __str__(self) -> str:
         return self.title
+
+    def save(self, *args, **kwargs):
+        self.product_img = self.compressImage(self.product_img)
+        super().save(*args, **kwargs)
+
+    def compressImage(self,uploadedImage):
+        imageTemproary = Image.open(uploadedImage)
+        outputIoStream = BytesIO()
+        # imageTemproaryResized = imageTemproary.resize( (1020,573) ) 
+        imageTemproary.save(outputIoStream , format='JPEG', quality=20)
+        outputIoStream.seek(0)
+        uploadedImage = InMemoryUploadedFile(outputIoStream,'ImageField', "%s.jpg" % uploadedImage.name.split('.')[0], 'image/jpeg', sys.getsizeof(outputIoStream), None)
+        return uploadedImage
